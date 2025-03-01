@@ -1,53 +1,63 @@
 
 
-# print("Python code is ran")
+# # print("Python code is ran")
 
-# import http.server
-# import sys
-# import http
-# import socketio
-# import socketserver
-# import socket
-# import requests
+# # import http.server
+# # import sys
+# # import http
+# # import socketio
+# # import socketserver
+# # import socket
+# # import requests
 
-# print (socket.gethostbyname("192.167.45.23"))
-
-
-import socket 
-
-html_doc = open("index.html","r")
+# # print (socket.gethostbyname("192.167.45.23"))
 
 
+# import socket 
 
-server_host = "localhost"
-server_port = 1313
+# html_doc = open("index.html","r")
 
 
-socket_listen = socket.socket(socket.AF_INET , socket.SOCK_STREAM)
-socket_address = (server_host,server_port)
 
-socket_listen.bind(socket_address)
-socket_listen.listen()
+# server_host = "localhost"
+# server_port = 1313
 
-connection , address = socket_listen.accept()
 
-print("Got Connection from " , address)
+# socket_listen = socket.socket(socket.AF_INET , socket.SOCK_STREAM)
+# socket_address = (server_host,server_port)
 
-server_msg = connection.recv(1024)
-string_request = server_msg.decode()
-print(string_request)
+# socket_listen.bind(socket_address)
+# socket_listen.listen()
 
-string_status = "HTTP/1.1 200 OK"
+# connection , address = socket_listen.accept()
 
-string_header ="""Content-Type: text/html; charset=UTF-8
-    Connection:close
+# print("Got Connection from " , address)
 
-"""
+# server_msg = connection.recv(1024)
+# string_request = server_msg.decode()
+# print(string_request)
 
-string_content = html_doc
+# string_status = "HTTP/1.1 200 OK"
 
-string_response = string_status + string_header + string_content
+# string_header ="""Content-Type: text/html; charset=UTF-8
+#     Connection:close
 
-byte_response = string_response.encode()
-connection.send(byte_response)
-connection.close()
+# """
+
+
+# string_response = string_status + string_header
+# byte_response = string_response.encode()
+# connection.send(byte_response)
+# connection.close()
+
+
+import http.server
+
+host = 1313
+ip = "localhost"
+
+address = (ip , host)
+
+server = http.server.HTTPServer(address,http.server.SimpleHTTPRequestHandler)
+server.serve_forever()
+
